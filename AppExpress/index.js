@@ -5,8 +5,27 @@ const path = require('path')
 
 const basePath = path.join(__dirname, 'templates')
 
+var checkAuth = function(req, res, next){
+    req.authStatus = true
+    if(req.authStatus){
+        console.log('Está logado, pode continuar')
+        next()
+    }
+    else{
+        console.log('Não está logado, faça login para continuar!')
+    }
+}
+
+app.use(checkAuth)
+
 app.get('/', (req, res) => {
     res.sendFile(`${basePath}/index.html`)
+})
+
+app.get('/user/:id', (req, res) => {
+    let emailUser = req.params.id + "@gmail.com"
+    console.log(`Parametro de usuario: ${emailUser}`)
+    res.sendFile(`${basePath}/user.html`)
 })
 
 

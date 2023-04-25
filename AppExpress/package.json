@@ -4,7 +4,9 @@
   "description": "servidor Express MySQL",
   "main": "index.js",
   "scripts": {
-    "test": "node ./index"
+    "test": "node ./index",
+    "dev": "nodemon ./index"
+    
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "author": "Gustavo Santos",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
   }
 }
