@@ -20,7 +20,20 @@ app.get('/', (req, res) => {
 app.get('/users/add', (req, res) => {
     res.sendFile(`${basePath}/userForm.html`)
 })
+app.get('/list/open', (req, res) => {
+    res.sendFile(`${basePath}/listForm.html`)
+})
 
+app.post('/list/resolve', (req, res) => {
+    let numero1 = req.body.numero1
+    let numero2 = req.body.numero2
+    if((numero1 + numero2) % 2 == 0){
+        res.sendFile(`${basePath}/userForm.html`)
+    }
+    else{
+        res.sendFile(`${basePath}/index.html`)
+    }
+})
 app.post('/users/save', (req, res) => {
     let name = req.body.name
     let age = req.body.age
