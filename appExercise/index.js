@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const path = require('path')
+const users = require('./user')
 
 const basePath = path.join(__dirname, 'templates')
 
@@ -13,13 +14,13 @@ app.use(
 )
 app.use(express.json())
 
+app.use('/users', users)
+
 app.get('/', (req, res) => {
     res.sendFile(`${basePath}/index.html`)
 })
 
-app.get('/users/add', (req, res) => {
-    res.sendFile(`${basePath}/userForm.html`)
-})
+
 app.get('/list/open', (req, res) => {
     res.sendFile(`${basePath}/listForm.html`)
 })
@@ -33,13 +34,6 @@ app.post('/list/resolve', (req, res) => {
     else{
         res.sendFile(`${basePath}/index.html`)
     }
-})
-app.post('/users/save', (req, res) => {
-    let name = req.body.name
-    let age = req.body.age
-
-    console.log(`Nome do Usuario: ${name}, Idade: ${age}`)
-    res.sendFile(`${basePath}/index.html`)
 })
 
 app.listen(port, () => {
