@@ -17,7 +17,7 @@ router.post('/save', (req, res) => {
     }
 
     if (fs.existsSync(`accounts/${name}.json`)) {
-        res.status(404).sendFile(`${basePath}/index.html`)
+        res.status(404).sendFile(`${basePath}/error.html`)
         return
     }
 
