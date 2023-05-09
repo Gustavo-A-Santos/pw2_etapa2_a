@@ -13,9 +13,7 @@ app.use(
     })
 )
 app.use(express.json())
-
 app.use(express.static('public'))
-
 app.use('/users', users)
 
 app.get('/', (req, res) => {
@@ -26,14 +24,13 @@ app.get('/users/add', (req, res) => {
     res.sendFile(`${basePath}/userForm.html`)
 })
 
-app.post('/users/save', (req, res) => {
-    let name = req.body.name
-    let age = req.body.age
-
-    console.log(`Nome do Usuario: ${name}, Idade: ${age}`)
-    res.sendFile(`${basePath}/index.html`)
-})
+app.use(
+    function(req, res, next){
+        res.status(404).sendFile(`${basePath}/404.html`)
+    }
+)
 
 app.listen(port, () => {
     console.log(`Servidor Rodando na porta: ${port}`)
 })
+
